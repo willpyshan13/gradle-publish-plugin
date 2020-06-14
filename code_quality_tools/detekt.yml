@@ -1,0 +1,43 @@
+failFast: true
+
+potential-bugs:
+  UnsafeCast:
+    active: false # We know what we're doing.
+  LateinitUsage:
+    active: false # We know what we're doing.
+
+style:
+  TopLevelPropertyNaming:
+    active: false
+  MaxLineLength:
+    active: false
+  DataClassShouldBeImmutable:
+    active: false
+
+performance:
+  SpreadOperator:
+    active: false
+
+naming:
+  FunctionMinLength:
+    active: false
+  FunctionMaxLength:
+    active: false
+
+complexity:
+  StringLiteralDuplication:
+    active: false
+  TooManyFunctions:
+    active: false
+
+empty-blocks:
+  EmptyFunctionBlock:
+    active: false
+
+comments:
+  UndocumentedPublicClass:
+    active: false
+  UndocumentedPublicFunction:
+    active: false
+  CommentOverPrivateFunction:
+    active: false
