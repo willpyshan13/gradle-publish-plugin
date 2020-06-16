@@ -104,7 +104,7 @@ mavenPublish {
 }
 ```
 
-More information can be found in the [Documentation of the Extension](src/main/kotlin/com/vanniktech/maven/publish/MavenPublishPluginExtension.kt)
+More information can be found in the [Documentation of the Extension](src/main/kotlin/com/vv/life/publish/MavenPublishPluginExtension.kt)
 
 __Note:__ To prevent looping behavior, especially in Kotlin projects / modules, you need to run the `uploadArchives` task with `--no-daemon`and `--no-parallel` flags:
 
