@@ -19,8 +19,7 @@ buildscript {
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     classpath 'com.gradle.publish:plugin-publish-plugin:0.11.0'
-    classpath 'com.github.ben-manes:gradle-versions-plugin:0.27.0'
-    classpath 'com.vv.life.plugin:gradle-publish-plugin:1.0-SNAPSHOT'
+    classpath 'com.vv.life.plugin.publish:gradle-publish-plugin:0.1.0-SNAPSHOT'
   }
 }
 
@@ -28,15 +27,14 @@ apply plugin: 'java-library'
 apply plugin: 'java-gradle-plugin'
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.github.ben-manes.versions'
-apply plugin: "com.vv.life.plugin"
+apply plugin: "vv-publish-plugin"
 apply plugin: 'com.gradle.plugin-publish'
 apply from: "gradle/integration-test.gradle"
 
 gradlePlugin {
   plugins {
     mavenPublishPlugin {
-      id = 'com.vv.life.plugin'
+      id = 'vv-publish-plugin'
       implementationClass = 'com.vv.life.publish.MavenPublishPlugin'
     }
   }

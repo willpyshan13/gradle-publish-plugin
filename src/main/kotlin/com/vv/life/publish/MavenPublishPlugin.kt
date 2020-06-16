@@ -73,15 +73,15 @@ open class MavenPublishPlugin : Plugin<Project> {
 
   private fun configureDokka(project: Project) {
     project.plugins.withId("org.jetbrains.kotlin.jvm") {
-      project.plugins.apply(MavenPublishPlugin.Companion.PLUGIN_DOKKA)
+      project.plugins.apply(PLUGIN_DOKKA)
     }
     project.plugins.withId("org.jetbrains.kotlin.android") {
-      project.plugins.apply(MavenPublishPlugin.Companion.PLUGIN_DOKKA)
+      project.plugins.apply(PLUGIN_DOKKA)
     }
     project.plugins.withId("org.jetbrains.kotlin.multiplatform") {
       // project.plugins.apply(PLUGIN_DOKKA)
     }
-    project.plugins.withId(MavenPublishPlugin.Companion.PLUGIN_DOKKA) {
+    project.plugins.withId(PLUGIN_DOKKA) {
       project.tasks.withType(DokkaTask::class.java).configureEach {
         if (it.outputDirectory.isEmpty()) {
           val javaConvention = project.convention.getPlugin(JavaPluginConvention::class.java)

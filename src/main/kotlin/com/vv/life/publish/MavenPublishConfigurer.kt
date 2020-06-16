@@ -101,8 +101,8 @@ internal class MavenPublishConfigurer(
     "publish${publication.name.capitalize()}PublicationTo${repository.capitalize()}Repository"
 
   override fun configureGradlePluginProject() {
-    val sourcesJar = project.tasks.register(MavenPublishConfigurer.Companion.SOURCES_TASK, SourcesJar::class.java)
-    val javadocsJar = project.tasks.register(MavenPublishConfigurer.Companion.JAVADOC_TASK, JavadocsJar::class.java)
+    val sourcesJar = project.tasks.register(SOURCES_TASK, SourcesJar::class.java)
+    val javadocsJar = project.tasks.register(JAVADOC_TASK, JavadocsJar::class.java)
 
     project.publishing.publications.withType(MavenPublication::class.java).all {
       if (it.name == "pluginMaven") {
@@ -121,7 +121,7 @@ internal class MavenPublishConfigurer(
   }
 
   override fun configureKotlinMppProject() {
-    val javadocsJar = project.tasks.register(MavenPublishConfigurer.Companion.JAVADOC_TASK, JavadocsJar::class.java)
+    val javadocsJar = project.tasks.register(JAVADOC_TASK, JavadocsJar::class.java)
 
     project.publishing.publications.withType(MavenPublication::class.java).all {
       configurePom(it, artifactId = it.artifactId.replace(project.name, publishPom.artifactId))
@@ -137,11 +137,11 @@ internal class MavenPublishConfigurer(
 
   override fun configureAndroidArtifacts() {
     val publications = project.publishing.publications
-    publications.create(MavenPublishConfigurer.Companion.PUBLICATION_NAME, MavenPublication::class.java) { publication ->
+    publications.create(PUBLICATION_NAME, MavenPublication::class.java) { publication ->
       configurePom(publication)
     }
 
-    val publication = project.publishing.publications.getByName(MavenPublishConfigurer.Companion.PUBLICATION_NAME) as MavenPublication
+    val publication = project.publishing.publications.getByName(PUBLICATION_NAME) as MavenPublication
 
     publication.from(project.components.getByName(project.publishExtension.androidVariantToPublish))
 
@@ -155,18 +155,18 @@ internal class MavenPublishConfigurer(
 
   override fun configureJavaArtifacts() {
     val publications = project.publishing.publications
-    publications.create(MavenPublishConfigurer.Companion.PUBLICATION_NAME, MavenPublication::class.java) { publication ->
+    publications.create(PUBLICATION_NAME, MavenPublication::class.java) { publication ->
       configurePom(publication)
     }
 
-    val publication = project.publishing.publications.getByName(MavenPublishConfigurer.Companion.PUBLICATION_NAME) as MavenPublication
+    val publication = project.publishing.publications.getByName(PUBLICATION_NAME) as MavenPublication
 
     publication.from(project.components.getByName("java"))
 
-    val sourcesJar = project.tasks.register(MavenPublishConfigurer.Companion.SOURCES_TASK, SourcesJar::class.java)
+    val sourcesJar = project.tasks.register(SOURCES_TASK, SourcesJar::class.java)
     publication.addTaskOutput(sourcesJar)
 
-    val javadocsJar = project.tasks.register(MavenPublishConfigurer.Companion.JAVADOC_TASK, JavadocsJar::class.java)
+    val javadocsJar = project.tasks.register(JAVADOC_TASK, JavadocsJar::class.java)
     publication.addTaskOutput(javadocsJar)
 
     if (project.plugins.hasPlugin("groovy")) {
